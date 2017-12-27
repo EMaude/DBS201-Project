@@ -1,0 +1,82 @@
+|-------------|
+| User View 1 |
+|-------------|
+
+UNF:
+	Invoice[Invoice#(PK), InvoiceDate, WorkTeam, {EquipUsed}, Customer, Address, {ServiceCode, Desciption, HourlyCharge, WorkDuration}]
+1NF:
+	Invoice[Invoice#(PK), ServiceCode(PK), EquipID(PK), InvoiceDate, WorkTeam, EquipUsedDesciption, Customer, Address, Desciption, HourlyCharge, WorkDuration]
+2NF:
+	Invoice[Invoice#(PK), InvoiceDate, WorkTeam, Customer, Address]
+	InvoiceService[Invoice#(FK), ServiceCode(FK), WorkDuration]
+	Service[ServiceCode(PK), Desciption, HourlyCharge]
+	Equipment[EquipID(PK), EquipDesc]
+3NF:
+	Invoice[Invoice#(PK), InvoiceDate, WorkTeam, CustomerID(FK)]
+	InvoiceService[Invoice#(FK), ServiceCode(FK), WorkDuration]
+	Service[ServiceCode(PK), Desciption, HourlyCharge]
+	Equipment[EquipID(PK), EquipDesc]
+	Customer[CustomerID(PK), Name, Address]
+
+|-------------|
+| User View 2 |
+|-------------|
+
+UNF:
+	Employee[Team#(PK), Description {Position, Name, EmpID, OHIP, HomePhone, StartDate {Skills}}]
+1NF:
+	Employee[Team#(PK), EmpID(PK), ServiceID(PK), Desciption, Position, Name, OHIP, Phone, StartDate, ServiceName]
+2NF:
+	Employee[EmpID(PK), Name, OHIP, Phone, StartDate, Team#(FK)]
+	ServiceEmployee[ServiceID(FK), EmpID(FK)]
+	Serivce[ServiceID(PK), ServiceName]
+	Team[Team#(PK), Descrption]
+
+|-------------|
+| User View 3 |
+|-------------|
+
+
+Invoice[ID(PK), Date, Cust#(FK), Rep#(FK)]
+InvoiceProduct[InvoiceID(FK), ProductID(FK), qty]
+Product[ProdID(PK), ProdClass, Name, Cost]
+SalesRep[RepID(PK), Name]
+
+|-------------|
+| User View 4 |
+|-------------|
+
+Product[ProductID(PK), ProductClass(FK), Desciption, Cost, Markup]
+ProductClass[ProductClass(PK), ClassName]
+
+|-------------|
+| User View 5 |
+|-------------|
+
+Product[ProductID(PK), Description, Inventory, Isle, SupplierID#(FK)]
+Supplier[SupplierID(FK), SupplierName]
+
+|-------------|
+|  Final Set  |
+|-------------|
+
+Product[ProductID(PK), Name, Descption, Isle, Cost, Markup, ProductClass(FK), SupplierID(FK)]
+Supplier[SupplierID(PK), SupplierName]
+ProductClass[ProductClass(PK), ClassName]
+
+Sales[InvoiceID(PK), Date, Cust#(FK), Rep#(FK)]
+SalesProduct[InvoiceID(FK), ProductID(FK), qty]
+SalesRep[RepID(PK), Name]
+
+Customer[CustomerID(PK), Name, Address]
+
+Invoice[Invoice#(PK), InvoiceDate, WorkTeam, CustomerID(FK)]
+InvoiceService[Invoice#(FK), ServiceCode(FK), WorkDuration]
+Equipment[EquipID(PK), ServiceID(FK) EquipDesc]
+
+Service[ServiceCode(PK), Name, Desciption, HourlyCharge]
+
+Team[Team#(PK), Descrption]
+Employee[EmpID(PK), Name, OHIP, Phone, StartDate, Team#(FK)]
+ServiceEmployee[ServiceID(FK), EmpID(FK)]
+
