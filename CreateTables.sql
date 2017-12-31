@@ -74,8 +74,7 @@ ALTER TABlE sales
 CREATE TABLE sales_product
 (	sales_id 		Integer 	NOT NULL,
 	product_id 		Integer 	NOT NULL,
-	qty				Integer 	NOT NULL,
-);
+	qty				Integer 	NOT NULL);
 
 ALTER TABLE sales_product
 	ADD CONSTRAINT sales_product_sales_id_fk
@@ -86,3 +85,32 @@ ALTER TABLE sales_product
 	ADD CONSTRAINT sales_product_product_id_fk
 		FOREIGN KEY(product_id)
 		REFERENCES product (product_id);
+
+
+CREATE TABLE invoice
+(	invoice_id 		Integer 	NOT NULL,
+	invoice_date 	Date 		NOT NULL,
+	work_team		Integer 	NOT NULL,
+	customer_id 	Integer 	NOT NULL,
+
+	CONSTRAINT invoice_invoice_id_pk
+		PRIMARY KEY(invoice_id) );
+
+ALTER TABLE invoice
+	ADD CONSTRAINT invoice_customer_id_fk
+		FOREIGN KEY(customer_id)
+		REFERENCES customer(customer_id);
+
+CREATE TABlE team
+( 	team_id 		Integer		NOT NULL,
+	job_desc		Char(64)	NOT NULL,
+
+	CONSTRAINT team_team_id_pk
+		PRIMARY KEY(team_id) );
+
+ALTER TABLE invoice
+	ADD CONSTRAINT invoice_team_id_fk
+		FOREIGN KEY(team_id)
+		REFERENCES team(team_id);
+
+

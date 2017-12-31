@@ -70,7 +70,7 @@ SalesRep[RepID(PK), Name]
 
 Customer[CustomerID(PK), Name, Address]
 
-Invoice[Invoice#(PK), InvoiceDate, WorkTeam, CustomerID(FK)]
+Invoice[Invoice#(PK), InvoiceDate, WorkTeam(FK), CustomerID(FK)]
 InvoiceService[Invoice#(FK), ServiceCode(FK), WorkDuration]
 Equipment[EquipID(PK), ServiceID(FK) EquipDesc]
 
