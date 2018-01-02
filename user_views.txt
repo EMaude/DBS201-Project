@@ -26,7 +26,7 @@ UNF:
 	Employee[Team#(PK), Description {Position, Name, EmpID, OHIP, HomePhone, StartDate {Skills}}]
 1NF:
 	Employee[Team#(PK), EmpID(PK), ServiceID(PK), Desciption, Position, Name, OHIP, Phone, StartDate, ServiceName]
-2NF:
+2NF/3NF:
 	Employee[EmpID(PK), Name, OHIP, Phone, StartDate, Team#(FK)]
 	ServiceEmployee[ServiceID(FK), EmpID(FK)]
 	Serivce[ServiceID(PK), ServiceName]
@@ -36,7 +36,7 @@ UNF:
 | User View 3 |
 |-------------|
 
-
+3NF:
 Invoice[ID(PK), Date, Cust#(FK), Rep#(FK)]
 InvoiceProduct[InvoiceID(FK), ProductID(FK), qty]
 Product[ProdID(PK), ProdClass, Name, Cost]
@@ -46,6 +46,7 @@ SalesRep[RepID(PK), Name]
 | User View 4 |
 |-------------|
 
+3NF:
 Product[ProductID(PK), ProductClass(FK), Desciption, Cost, Markup]
 ProductClass[ProductClass(PK), ClassName]
 
@@ -53,14 +54,15 @@ ProductClass[ProductClass(PK), ClassName]
 | User View 5 |
 |-------------|
 
-Product[ProductID(PK), Description, Inventory, Isle, SupplierID#(FK)]
+3NF:
+Product[ProductID(PK), Description, Inventory, qty, aisle, SupplierID#(FK)]
 Supplier[SupplierID(FK), SupplierName]
 
-|-------------|
-|  Final Set  |
-|-------------|
+|----------------|
+|  Final Set 3NF |
+|----------------|
 
-Product[ProductID(PK), Name, Descption, Isle, Cost, Markup, ProductClass(FK), SupplierID(FK)]
+Product[ProductID(PK), Name, Descption, aisle, Qty, Cost, Markup, ProductClass(FK), SupplierID(FK)]
 Supplier[SupplierID(PK), SupplierName]
 ProductClass[ProductClass(PK), ClassName]
 
@@ -72,11 +74,12 @@ Customer[CustomerID(PK), Name, Address]
 
 Invoice[Invoice#(PK), InvoiceDate, WorkTeam(FK), CustomerID(FK)]
 InvoiceService[Invoice#(FK), ServiceCode(FK), WorkDuration]
-Equipment[EquipID(PK), ServiceID(FK) EquipDesc]
+Equipment[EquipID(PK), EquipDesc]
+EquipmentService[ServiceID(FK), EquipID(FK)]
 
 Service[ServiceCode(PK), Name, Desciption, HourlyCharge]
 
 Team[Team#(PK), Descrption]
-Employee[EmpID(PK), Name, OHIP, Phone, StartDate, Team#(FK)]
+Employee[EmpID(PK), Name, OHIP, Phone, position, StartDate, Team#(FK)]
 ServiceEmployee[ServiceID(FK), EmpID(FK)]
 
