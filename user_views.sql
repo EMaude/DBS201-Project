@@ -22,7 +22,7 @@ CREATE VIEW Employee_Reports AS
 
 CREATE VIEW Product_Sales AS
 	SELECT  c.class_code, p.product_id, p.product_name,  p.cost * p.markup AS charge
-			a.qty, s.sales_id, s.sale_date, r.salesrep_id, salesrep_name,
+			a.qty, s.sales_id, s.sale_date, r.salesrep_id, r.salesrep_name,
 			s.customer_id
 	FROM	product_class c, product p, sales s, sales_rep r, sales_product a
 	WHERE	p.class_id = c.class_id

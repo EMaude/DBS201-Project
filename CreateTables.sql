@@ -17,7 +17,7 @@ CREATE TABLE product
 (	product_id 		Integer 	NOT NULL,
 	product_name	Char(15),
 	description		Char(32),
-	aisle			Integer ,
+	isle			Integer ,
 	qty				Integer ,
 	cost 			Decimal ,
 	markup			Decimal ,
@@ -102,7 +102,7 @@ ALTER TABLE invoice
 		REFERENCES customer(customer_id);
 
 CREATE TABLE team
-( 	team_id 		Integer		NOT NULL,
+( 	teasm_id 		Integer		NOT NULL,
 	job_desc		Char(64),
 
 	CONSTRAINT team_team_id_pk
@@ -165,7 +165,7 @@ CREATE TABLE employee
 	Phone			Integer 	NOT NULL,
 	startDate 		Date 		NOT NULL,
 	team_id 		Integer 	NOT NULL,
-	position		Char(64) 	NOT NULL,
+	position		Char(64)    NOT NULL,
 
 	CONSTRAINT employee_employee_id_pk
 		PRIMARY KEY(employee_id) )
